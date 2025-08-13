@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Brand palette ---- */
+  --color-charcoal: #14130f;
+  --color-charcoal-soft: #201e18;
+  --color-ivory: #faf6ee;
+  --color-ivory-dim: #f2ecdd;
+  --color-gold: #b8944f;
+  --color-gold-light: #d4b478;
+  --color-gold-dark: #8f6f38;
+  --color-stone: #e4ddd0;
+  --color-stone-dark: #c9beac;
+  --color-ink: #2a2822;
+  --color-ink-soft: #55503f;
+
+  /* ---- Typography ---- */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
+
+  /* ---- Radius: deliberately restrained ---- */
+  --radius-card: 2px;
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 0.9s ease forwards;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+.eyebrow--on-dark {
+  color: var(--color-gold-light);
+}
+
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold) 0%, transparent 70%);
+}
+
+.hairline-full {
+  height: 1px;
+  background: var(--color-stone-dark);
+}
+
+.reveal {
+  opacity: 0;
+}
+.reveal.is-visible {
+  animation: var(--animate-fade-up);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
